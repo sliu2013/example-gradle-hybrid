@@ -1,5 +1,6 @@
 plugins {
     id 'org.gosu-lang.gosu' version '0.3.1'
+	id 'jacoco' 
 }
 
 repositories {
@@ -18,4 +19,32 @@ compileGosu {
 }
 compileTestGosu {
     classpath = tasks.getByName('compileTestJava').outputs.files + classpath
+}
+
+jacoco{
+	toolVersion = '0.7.6.201602180812'
+	reportsDir = file("$buildDir/jacoco/reports/")
+}
+
+test {
+	jacoco {
+		append = false
+		destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+	}
+}
+
+jacocoTestReport {
+	sourceDirectories = files(sourceSets.main.allSource.srcDirs)
+	classDirectories =  files(sourceSets.main.output)
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.enabled true
+	}
+}
+
+task printSourceSets(){
+	println sourceSets.main.allSource.srcDirs.collect {it}
+	println sourceSets.main.output.collect {it}
+	println sourceSets.main.allSource.srcDirs.collect {it}
 }
