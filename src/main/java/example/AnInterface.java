@@ -6,4 +6,9 @@ package example;
 public interface AnInterface {
 
   int addition (int x);
+
+  static int staticAdd(int y){
+    int z = y + 10;
+    return z;
+  }
 }
