@@ -3,7 +3,7 @@ package example;
 /**
  * Created by sliu on 7/24/2017.
  */
-public interface AnInterface {
+public interface InterfaceWithDefaultMethod {
 
   int addition (int x);
 
